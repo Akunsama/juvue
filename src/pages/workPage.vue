@@ -44,9 +44,5 @@
 </script>
 
 <style lang="less" scoped>
-	.main-page{
-		height: 100vh;
-		overflow: auto;
-	}
 
 </style>

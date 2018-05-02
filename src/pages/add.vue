@@ -1,5 +1,5 @@
 <template>
-	<div class="main-page">
+	<div class="">
 		<div class="addTitle">
 			请编辑您的代办事项
 		</div>
@@ -7,10 +7,16 @@
 			<mt-field label="标题" placeholder="请输入标题" :state="rule.title" v-model.trim="subData.title" 
 				@change="rule.title=subData.title?'success':'error'"></mt-field>
 	
-			<mt-field label="内容" placeholder="" :state="rule.content" type="textarea" rows="8" v-model="subData.content"
+			<mt-field label="内容" placeholder="" :state="rule.content" type="textarea" rows="6" v-model="subData.content"
 				@change="rule.content=subData.content?'success':'error'"></mt-field>	
 				
-			<mt-cell title="图片"><input type="file" name="" id="" value="" /></mt-cell>
+			<div class="imgBox">
+				<h3>请选择背景图片</h3>
+				<div id="showImg">
+					<img :src="subData.imgsrc"/>
+				</div>
+				<input class="imgBtn" type="file" name="" id="" value="" @change="showImg"/>
+			</div>	
 		</div>
 
 		<div class="addBtn">
@@ -26,7 +32,9 @@
 			return {
 				subData:{
 					title:'',
-					content:''
+					content:'',
+					imgsrc:'',
+					time:'',
 				},
 				rule:{
 					title:'',
@@ -45,17 +53,26 @@
 		},
 		methods: {
 			submitBtn(){
-				this.$router.push({path:'/'})
+				if(this.subData.title && this.subData.content){
+					this.subData.time = String(new Date())
+					this.$store.commit("SET_TODOLIST",this.subData)
+					this.$router.push({path:'/'})
+				}
+			},
+			showImg(e){
+				let fileTarget = e.currentTarget,
+				file = fileTarget.files[0];
+				let reader = new FileReader();
+				reader.readAsDataURL(file)
+				reader.onload = ()=>{
+					this.subData.imgsrc = reader.result;
+				}
 			}
 		},
 	}	
 </script>
 
 <style lang="less" scoped>
-	.main-page{
-		height: 100vh;
-		overflow: auto;
-	}
 	.addTitle{
 		height: 8vh;
 	    background-color: #eee;
@@ -64,10 +81,34 @@
 	    font-size: 3vh;
 	}
 	.addCotent{
-		margin-top: 5vh;
+		margin-top: 2vh;
+		.imgBox{
+			position:relative;
+			text-align:center;
+			#showImg{
+				position: absolute;
+			    background-color: black;
+			    width: 90vw;
+			    height: 30vh;
+			    margin: auto;
+			    left: 5vw;
+			    opacity: 0.8;
+			    img{
+			    	width: 100%;
+			    	height: 100%;
+			    }
+			}
+			.imgBtn{
+				position: absolute;
+			    width: 90vw;
+			    height: 30vh;
+			    left: 5vw;
+			    opacity: 0;
+			}
+		}
 	}
 	.addBtn{
-		margin-top: 5vh;
+		margin-top: 40vh;
 		text-align: center;
 		.submitBtn{
 			width: 80%;

@@ -8,7 +8,7 @@
 			</mt-swipe>			
 		</div>
 		<div class="main-page-content">
-			<mt-cell v-for="n in 20" :key="n" :title="'待处理 ' + n" />  
+			<mt-cell v-for="item in todoList" :key="item.title" :label="item.time" :title="item.title" />  
 		    
 		</div>
 	</div>
@@ -18,11 +18,15 @@
 	export default {
 		data() {
 			return {
-				selected:'外卖'
+				todoList:[],
 			}
 		},
 		created() {
 			
+		},
+		mounted(){
+			console.log(this.$store	)
+			this.todoList = this.$store.getters.todoList
 		},
 		computed: {
 			
@@ -37,12 +41,8 @@
 </script>
 
 <style lang="less" scoped>
-	.main-page{
-		height: 100vh;
-		overflow: auto;
-		.main-page-swipe{
-			height: 200px;
-		}
+	.main-page-swipe{
+		height: 200px;
 	}
 	.mint-swipe-item{
 		text-align: center;

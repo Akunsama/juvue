@@ -72,6 +72,8 @@
 </script>
 <style>
 	.mint-header{
-		
+		position: absolute;
+	    z-index: 100;
+	    width: 100%;
 	}
 </style>
