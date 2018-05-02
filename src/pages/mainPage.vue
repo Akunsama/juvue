@@ -2,9 +2,10 @@
 	<div class="main-page">
 		<div class="main-page-swipe">
 			<mt-swipe :auto="4000">
-				<mt-swipe-item>1</mt-swipe-item>
-				<mt-swipe-item>2</mt-swipe-item>
-				<mt-swipe-item>3</mt-swipe-item>
+				<mt-swipe-item v-for="item in showList">
+					<span>{{item.title}}</span>
+					<img :src="item.imgsrc"/>
+				</mt-swipe-item>
 			</mt-swipe>			
 		</div>
 		<div class="main-page-content">
@@ -18,6 +19,16 @@
 	export default {
 		data() {
 			return {
+				showList:[{
+					title:"111",
+					imgsrc:''
+				},{
+					title:"111",
+					imgsrc:''
+				},{
+					title:"111",
+					imgsrc:''
+				}],
 				todoList:[],
 			}
 		},
@@ -27,6 +38,8 @@
 		mounted(){
 			console.log(this.$store	)
 			this.todoList = this.$store.getters.todoList
+			let arr = this.todoList.slice(0,3);
+			this.showList = [...arr,...this.showList].slice(0,3);
 		},
 		computed: {
 			
@@ -47,5 +60,16 @@
 	.mint-swipe-item{
 		text-align: center;
 		background-color: rgb(205,205,205);
+		span{
+			position: absolute;
+			top: 1vh;
+			width: 100%;
+			text-align: center;
+			font-size: 5vw;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
 	}
 </style>
