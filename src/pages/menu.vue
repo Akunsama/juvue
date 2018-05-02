@@ -1,9 +1,35 @@
 <template>
 	<div class="menu">
-		<br />
-		<br />
-		<br />
-		<router-link to="/"><mt-button type="default">default</mt-button></router-link>
+		<div class="menu-header">
+			<img src="http://placehold.it/80x80"/>
+		</div>
+		<div class="menu-content">
+			<mt-cell
+				title="待处理"
+				to="//github.com">
+			</mt-cell>
+			<mt-cell
+				title="已处理"
+				to="//github.com">
+			</mt-cell>
+			<mt-cell
+				title="已取消"
+				to="//github.com">
+			</mt-cell>
+			<mt-cell
+				title="历史记录"
+				to="//github.com">
+			</mt-cell>
+			<br />
+			<mt-cell
+				title="设置"
+				to="//github.com">
+			</mt-cell>
+		</div>
+		<div class="menu-footer">
+			made by gzk
+		</div>
+
 	</div>
 </template>
 
@@ -33,5 +59,18 @@
 		width: 70vw;
 		height: 100vh;
 		background-color:white;
+		.menu-header{
+			margin: 10vh 0 10vh;
+			text-align: center;
+		}
+		.menu-content{
+			text-align: center;
+		}
+		.menu-footer{
+			position: absolute;
+			bottom: 10vh;
+			text-align: center;
+			width: 100%;
+		}
 	}
 </style>

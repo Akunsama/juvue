@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<mt-header title="头部">
-			<router-link to="/menu" slot="left">
-				<mt-button icon="back"></mt-button>
-			</router-link>
-			<mt-button icon="more" slot="right"></mt-button>
+				<mt-button icon="back" slot="left" @click="btn"></mt-button>
+			<mt-button class="iconfont icon-add" slot="right" @click="add"></mt-button>
 		</mt-header>
+		
+		<router-view></router-view>
 		
 		<mt-popup
 		  v-model="popupVisible"
@@ -14,17 +14,14 @@
 		</mt-popup>
 
 		<mt-tabbar v-model="selected">
-			<mt-tab-item id="外卖" >
-				<img slot="icon" src="http://placehold.it/100x100" @click="btn"> 外卖
+			<mt-tab-item id="/mainPage">
+					<img slot="icon" src="http://placehold.it/20x20"> 首页
 			</mt-tab-item>
-			<mt-tab-item id="订单">
-				<img slot="icon" src="http://placehold.it/100x100"> 订单
+			<mt-tab-item id="/workPage">
+					<img slot="icon" src="http://placehold.it/20x20"> 任务处理
 			</mt-tab-item>
-			<mt-tab-item id="发现">
-				<img slot="icon" src="http://placehold.it/100x100"> 发现
-			</mt-tab-item>
-			<mt-tab-item id="我的">
-				<img slot="icon" src="http://placehold.it/100x100"> 我的
+			<mt-tab-item id="/setting">
+					<img slot="icon" src="http://placehold.it/20x20"> 设置
 			</mt-tab-item>
 		</mt-tabbar>
 	</div>
@@ -55,13 +52,26 @@
 			tableRowClassName() {
 
 			},
+			add(){
+				this.$router.push({
+					path:'/add'
+				})
+			},
 			btn() {
-				console.log("点击了")
 				this.popupVisible = true
-			}
+			},
 		},
+		watch:{
+			selected(val){
+				this.$router.push({
+					path:val
+				})
+			}
+		}
 	}
 </script>
 <style>
-
+	.mint-header{
+		
+	}
 </style>

@@ -6,6 +6,7 @@ import router from './router'
 import Mint from 'mint-ui';
 Vue.use(Mint);
 
+import '../static/font/iconfont.css'
 import './less/index.less'
 
 Vue.config.productionTip = false
