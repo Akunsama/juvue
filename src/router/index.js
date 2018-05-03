@@ -8,6 +8,7 @@ import setting from '@/pages/setting'
 
 import menu from '@/pages/menu'
 import add from '@/pages/add'
+import detail from '@/pages/detail'
 
 Vue.use(Router)
 
@@ -30,7 +31,11 @@ export default new Router({
       	path: '/setting',
 	      name: 'setting',
 	      component: setting,
-      },]
+      },{
+	      path: '/detail',
+	      name: 'detail',
+	      component: detail
+	    }]
     },
     {
       path: '/menu',

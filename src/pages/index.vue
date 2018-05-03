@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<mt-header title="头部">
+		<mt-header title="分布式账簿">
 				<mt-button icon="back" slot="left" @click="btn"></mt-button>
-			<mt-button class="iconfont icon-add" slot="right" @click="add"></mt-button>
+			<mt-button class="iconfont icon-add addbtn" slot="right" @click="add"></mt-button>
 		</mt-header>
 		
 		<router-view></router-view>
@@ -75,5 +75,7 @@
 		position: absolute;
 	    z-index: 100;
 	    width: 100%;
+	    font-size: 2rem;
 	}
+	
 </style>

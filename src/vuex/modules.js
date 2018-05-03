@@ -2,7 +2,7 @@
 
 const module = {
 	state: {
-		todoDetail: sessionStorage.getItem('todoDetail'),
+		todoDetail: {},
 		todoList:[],
 		resolveList:[],
 		cancelList:[]
@@ -14,12 +14,12 @@ const module = {
 			sessionStorage.setItem('todoDetail', todoDetail);
 		},
 		SET_TODOLIST: (state, todoList) => {
-			if(sessionStorage.getItem("todoList")){
-				state.todoList = [todoList,...JSON.parse(sessionStorage.getItem("todoList"))]
+			if(localStorage.getItem("todoList")){
+				state.todoList = [todoList,...JSON.parse(localStorage.getItem("todoList"))]
 			}else{
 				state.todoList=[todoList]
 			}
-			sessionStorage.setItem('todoList', JSON.stringify(state.todoList));
+			localStorage.setItem('todoList', JSON.stringify(state.todoList));
 		},
 	},
 	actions: {
